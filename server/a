@@ -1,0 +1,2 @@
+npm install neat-csv@5.2.0
+npm install sqlite3

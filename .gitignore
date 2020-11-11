@@ -11,3 +11,8 @@ lib64
 *.png
 *.csv
 __pycache__
+
+*.db
+
+package-lock.json
+node_modules

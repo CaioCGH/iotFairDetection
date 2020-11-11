@@ -1,11 +1,14 @@
 from ObjectDetectorModule import *
-import datetime 
+import datetime
+import sqlite3
+import time
 
 cap = cv2.VideoCapture(0)
 cap.set(3, 640)
 cap.set(4, 480)
 # cap.set(10,70)
-f = open("history.csv", "a")
+conn = sqlite3.connect('Database.db')
+c = conn.cursor()
 try:
     while True:
         success, img = cap.read()
@@ -13,9 +16,12 @@ try:
         for x in objectInfo:
             string = str(datetime.datetime.now()) + ","  + x[1]
             print(string)
-            f.write(string + "\n")
-        cv2.imshow("Output", img)
-        cv2.waitKey(1)
+            c.execute("INSERT INTO observation(timestamp, 'object_name') select datetime('now'),\"" + x[1] + "\";")
+        conn.commit()
+        time.sleep(5)
+        
+        # cv2.imshow("Output", img)
+        # cv2.waitKey(1)
 finally:
-    print("closing file")
-    f.close()
+    print("closing database")
+    conn.close()
