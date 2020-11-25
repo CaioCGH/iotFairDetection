@@ -18,7 +18,7 @@ try:
             print(string)
             c.execute("INSERT INTO observation(timestamp, 'object_name') select datetime('now'),\"" + x[1] + "\";")
         conn.commit()
-        time.sleep(5)
+        time.sleep(1)
         
         # cv2.imshow("Output", img)
         # cv2.waitKey(1)
