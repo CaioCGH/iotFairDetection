@@ -7,7 +7,7 @@ var db = new sqlite3.Database('../mainModule/Database.db');
 server.set('view engine', 'pug');
 
  server.get("/all", (req, res) => {
-    let sql = `SELECT * from observation ORDER BY id LIMIT 1000`;
+    let sql = `SELECT * from observation ORDER BY id  DESC LIMIT 1000`;
     db.all(sql, [], (err, rows) => {
         if (err) {
           throw err;
