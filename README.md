@@ -8,6 +8,10 @@ Em São Paulo, feiras-livres, ou feiras-de rua são tradicionais pontos de venda
 
 A ideia desse projeto seria monitorar a atividade da feira a fim de informar, em tempo real, via internet, o estágio em que ela se encontra, para que as pessoas possam tomar melhores decisões se precisarem usar a rua (ou se quiserem usar a feira).
 
+Isso será feito utilizando uma módulo de câmera para Raspberry Pi, que captará imagens da rua, que serão tratadas por nosso software. Depois, teremos um servidor web que disponibilizará as informações para usuários interessados.
+
+![Resumo](imgs/summary.png)
+
 ### Materiais
 
 Para o desenvolvimento desse projeto, utilizamos:
@@ -16,7 +20,7 @@ Para o desenvolvimento desse projeto, utilizamos:
 - 1 Módulo de câmera para Raspberry Pi
 - 1 Case com cooler para Raspberry Pi
 - Fonte e extensão elétrica para alimentação
-- 1 pote de plástico para proteção das intempéries
+- 1 pote de plástico para proteção contra intempéries
 - periféricos para utilização do raspberry Pi
 
 ### Softwares
@@ -37,7 +41,7 @@ A partir de um Raspberry Pi com Raspbian (Raspberry Pi OS), começamos pela inst
 
 Teste se ela está funcionando com:
 
-`raspistill -o minha_foto.png`
+`raspistill -o minha_foto.jpg`
 
 #### OpenCV
 
@@ -108,7 +112,7 @@ Seu servidor já deve estar funcionando na porta 4000.
 
 Usando o navegador do Raspberry Pi acesse:
 ```
-localhost:4000/all
+http://localhost:4000/all
 ```
 e você deverá ver os últimos 1000 registros do banco. Não muito útil, mas já indica a integridade do sistema.
 ```
@@ -124,6 +128,15 @@ tentará, utilizando as observações do último minuto, identificar se o estado
 
 ### Instalação Física Da Câmera
 
+O Raspberry Pi demonstrou esquentar bastante com o OpenCV rodando em força total, ultrapassando o limite de segurança de 85°C em cinco minutos de uso. Para previnir isso, utilizamos uma case apropriada e um cooler.
+
+![Raspberry Pi numa case de acrílico com cooler](imgs/rasp_case.jpeg)
+Para proteger de chuva, poeira, animais, colocamos o conjunto dentro de um pote plástico para a comida, com furo para passar o cabo de energia e para a câmera. Existem [técnicas para proteger o buraco da câmera](https://www.youtube.com/watch?v=IiOH5LUVkWo), mas acabei não utilizando nessa versão.
+
+Uma vez instalada, acesse o Raspberry Pi por SSH e tente tirar uma foto para verificar se o ângulo da câmera está bom. 
+![Arrumando o ângulo da câmera](imgs/better_angle-2.jpg)
+
+Assim, só o que falta é subir os programas (módulo principal e servidor) e deixá-los rodando. Utilize o utilitário [screen](https://linuxize.com/post/how-to-use-linux-screen/) para manter os processo funcionando mesmo depois de encerrar a sessão SSH.
 
 ## Referências
 

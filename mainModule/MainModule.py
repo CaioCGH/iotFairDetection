@@ -16,7 +16,7 @@ try:
         for x in objectInfo:
             string = str(datetime.datetime.now()) + ","  + x[1]
             print(string)
-            c.execute("INSERT INTO observation(timestamp, 'object_name') select datetime('now'),\"" + x[1] + "\";")
+            c.execute("INSERT INTO observation(timestamp, 'object_name') select datetime('now', -3 hour),\"" + x[1] + "\";")
         conn.commit()
         time.sleep(1)
         

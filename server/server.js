@@ -20,8 +20,8 @@ server.set('view engine', 'pug');
  });
 
 
- server.get("/last-hour-summary", (req, res) => {
-    let sql = `SELECT * from observation WHERE timestamp >= datetime('now', '-1 Hour')`;
+ server.get("/summary", (req, res) => {
+    let sql = `SELECT * from observation WHERE timestamp >= datetime('now', '-3 hour', '-5 minutes')`;
     db.all(sql, [], (err, rows) => {
         if (err) {
           throw err;
@@ -33,8 +33,8 @@ server.set('view engine', 'pug');
       });
  });
 
-server.get("/fair_stage", (req, res) => {
-  let sql = `SELECT * from observation WHERE timestamp >= datetime('now', '-1 minutes')`;
+server.get("/fair-stage", (req, res) => {
+  let sql = `SELECT * from observation WHERE timestamp >= datetime('now', '-3 hour', '-5 minutes')`;
   db.all(sql, [], (err, rows) => {
       if (err) {
         throw err;
@@ -47,7 +47,7 @@ server.get("/fair_stage", (req, res) => {
         status = "em andamento";
       }else if(traficObjects < 20 &&  objectsSeen['person'] > 10){
         status = "finalizando";
-      }else if(traficObjects < 50){
+      }else if(traficObjects > 20){
         status = "finalizada";
       }
       res.render("status", { title: "Fair status", status: status });
