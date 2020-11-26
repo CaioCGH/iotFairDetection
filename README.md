@@ -25,7 +25,7 @@ Para o desenvolvimento desse projeto, utilizamos:
 
 ### Softwares
 
-As imagens captadas pela câmera são tratadas pelo nosso módulo principal, escrito em Python, usando a biblioteca OpenCV. Os resultados são escritos num banco gerenciado por Sqlite. Por fim, um servidor Node acessa o banco e disponibiliza o resultado para os usuários finais.
+As imagens captadas pela câmera são tratadas pelo nosso módulo principal, escrito em Python, usando a biblioteca OpenCV. Os resultados são registrados num banco gerenciado por Sqlite. Por fim, um servidor Node acessa o banco e disponibiliza o resultado para os usuários finais.
 
 ## Procedimentos
 
@@ -132,6 +132,8 @@ O Raspberry Pi demonstrou esquentar bastante com o OpenCV rodando em força tota
 
 ![Raspberry Pi numa case de acrílico com cooler](imgs/rasp_case.jpeg)
 Para proteger de chuva, poeira, animais, colocamos o conjunto dentro de um pote plástico para a comida, com furo para passar o cabo de energia e para a câmera. Existem [técnicas para proteger o buraco da câmera](https://www.youtube.com/watch?v=IiOH5LUVkWo), mas acabei não utilizando nessa versão.
+
+![A câmera instalada!](imgs/rasp-in-situ.jpg)
 
 Uma vez instalada, acesse o Raspberry Pi por SSH e tente tirar uma foto para verificar se o ângulo da câmera está bom. 
 ![Arrumando o ângulo da câmera](imgs/better_angle-2.jpg)
